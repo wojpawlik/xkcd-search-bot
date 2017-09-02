@@ -4,12 +4,15 @@ const { bot } = require('./bot');
 const _ = require('lodash');
 const request = require('request-promise-native');
 
+const throttle = _.flip(_.throttle);
+
 const { XKCD_CACHE_TIME, NODE_ENV } = process.env;
 
 const cacheTime = Number(XKCD_CACHE_TIME || (NODE_ENV === 'development'? 0: 3600));
 
 const maxInlineResults = 50;
 
+const LATEST_XKCD_CACHE_TIME = 600 * 1000; // 10 minutes in ms
 
 function revelantXkcd(query) {
     return request({
@@ -18,13 +21,12 @@ function revelantXkcd(query) {
     }).then(text => text.split(/[\r\n]+/g).slice(2, -1));
 }
 
-// It could be cached...
-function latestXkcd() {
+const latestXkcd = throttle({ leading: true, trailing: false }, LATEST_XKCD_CACHE_TIME, () => {
     return request({
         url: 'https://xkcd.com/info.0.json',
         json: true,
     });
-}
+});
 
 
 function results() {

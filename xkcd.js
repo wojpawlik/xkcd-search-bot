@@ -79,6 +79,12 @@ exports.handler = async (msg) => {
     }
 };
 
+exports.randomHandler = async (msg) => {
+    const latest = await latestXkcd();
+    const random = _.random(1, latest.num);
+    return replyXkcd(msg, random);
+}
+
 exports.inlineHandler = async (inlineQuery) => {
     const { query, id } = inlineQuery;
     const list = query

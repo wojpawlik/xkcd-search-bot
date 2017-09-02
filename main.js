@@ -7,6 +7,7 @@ const help = require('./help');
 const xkcd = require('./xkcd');
 
 bot.on('/xkcd', xkcd.handler);
+bot.on('/random', xkcd.randomHandler);
 bot.on('inlineQuery', xkcd.inlineHandler);
 bot.on(['/start', '/help'], help.handler);
 

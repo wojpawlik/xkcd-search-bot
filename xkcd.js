@@ -31,14 +31,33 @@ function results() {
 }
 
 
+function replyMarkupForXkcd(num) {
+    return bot.inlineKeyboard([[
+        {
+            text: 'Explanation...',
+            url: `https://www.explainxkcd.com/wiki/index.php/${num}`,
+        }
+    ]]);
+}
+
+
 function inlineImage({num, img}) {
     return {
         type: 'photo',
         id: String(num),
         photo_url: img,
         thumb_url: img,
+        caption: `https://xkcd.com/${num}`,
+        reply_markup: replyMarkupForXkcd(num),
     }
 }
+
+
+function replyXkcd(msg, num) {
+    const replyMarkup = replyMarkupForXkcd(num);
+    return msg.reply.text(`https://xkcd.com/${num}`, { replyMarkup } );
+}
+
 
 exports.handler = async (msg) => {
     if (msg.entities[0].type !== 'bot_command') {
@@ -47,13 +66,13 @@ exports.handler = async (msg) => {
     msg.args = msg.text.slice(msg.entities[0].length + 1);
     if (!msg.args) {
         const latest = await latestXkcd();
-        return msg.reply.text(`https://xkcd.com/${latest.num}`);
+        return replyXkcd(msg, latest.num);
     } else if (/^\d+$/.test(msg.args)) {
-        return msg.reply.text(`https://xkcd.com/${msg.args}`);
+        return replyXkcd(msg, msg.args);
     } else {
         const [ revelant ] = await revelantXkcd(msg.args);
         const [ id ] = revelant.split(' ');
-        return msg.reply.text(`https://xkcd.com/${id}`);
+        return replyXkcd(msg, id);
     }
 };
 

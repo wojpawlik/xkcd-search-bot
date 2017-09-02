@@ -7,6 +7,8 @@ const { XKCD_CACHE_TIME, NODE_ENV } = process.env;
 
 const cacheTime = Number(XKCD_CACHE_TIME || (NODE_ENV === 'development'? 0: 3600));
 
+const maxInlineResults = 50;
+
 
 function revelantXkcd(query) {
     return request({
@@ -59,7 +61,7 @@ exports.inlineHandler = async (inlineQuery) => {
     const { query, id } = inlineQuery;
     const list = query
         ? (await revelantXkcd(query))
-            .slice(0, 50)
+            .slice(0, maxInlineResults)
             .map(line => line.split(' '))
             .map(([num, url]) => inlineImage({
                 num,

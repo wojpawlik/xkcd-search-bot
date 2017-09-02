@@ -1,6 +1,7 @@
 'use strict';
 
 const { bot } = require('./bot');
+const _ = require('lodash');
 const request = require('request-promise-native');
 
 const { XKCD_CACHE_TIME, NODE_ENV } = process.env;

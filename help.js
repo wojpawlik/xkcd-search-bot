@@ -16,6 +16,7 @@ When query is empty, latest xkcd is sent.
 const replyMarkup = bot.inlineKeyboard([[
 	{ text: 'Contact author', url: contactUrl },
 	{ text: 'Repository', url: pkg.repository.url},
+	{ text: 'Rate', url: 'https://telegram.me/storebot?start=xkcdsearch_bot'},
 ]])
 
 const options = { replyMarkup, parseMode: 'markdown' };

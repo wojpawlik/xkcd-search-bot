@@ -79,7 +79,7 @@ When query is empty, latest xkcd is sent.`
                                       ],
                 ),
                 url,
-                undefined,
+                comicInfo['transcript'],
                 comicInfo['img'],
             )
         }))

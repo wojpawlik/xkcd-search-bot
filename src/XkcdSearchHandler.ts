@@ -20,6 +20,7 @@ export class XkcdSearchHandler {
     async registerToBot(bot: Telegraf) {
         bot.command(['start', 'help'], (context) => this.help(context))
         bot.on('inline_query', (context) => this.inlineQuery(context))
+        bot.action(/\d+/, (context) => this.mouseOver(context))
 
         const me = await bot.telegram.getMe()
         this.botName = me.username
@@ -96,6 +97,13 @@ When query is empty, latest xkcd is sent.`
             .map((row: string) => row.split(' ')[0])
             .map((id: string) => parseInt(id))
         return relevantXkcdIds
+    }
+
+    async mouseOver(context: ContextMessageUpdate) {
+        const xkcdId = parseInt(context.callbackQuery.data)
+        const url = `https://xkcd.com/${xkcdId}`
+        const comicInfo = await fetch(url + '/info.0.json').then(response => response.json())
+        context.answerCallbackQuery(comicInfo['alt'], undefined, true)
     }
 }
 

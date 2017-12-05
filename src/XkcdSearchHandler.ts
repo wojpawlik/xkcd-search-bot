@@ -1,4 +1,4 @@
-import * as fetch from 'node-fetch'
+import * as XKCD from 'relevant-xkcd'
 import * as Telegraf from 'telegraf'
 import * as Extra from 'telegraf/extra'
 import * as Markup from 'telegraf/markup'
@@ -28,7 +28,7 @@ export class XkcdSearchHandler {
 
     async help(context: ContextMessageUpdate): Promise<Message> {
         const replyText = `\
-Type \`@${this.botName} <query>\` in any chat to search for [revelant xkcd](https://relevantxkcd.appspot.com/).
+Type \`@${this.botName} <query>\` in any chat to search for [relevant xkcd](https://relevantxkcd.appspot.com/).
 
 You can also use \`/xkcd <query>\` in pm or any group I'm in.
 
@@ -54,33 +54,31 @@ When query is empty, latest xkcd is sent.`
 
     async inlineQuery(context: ContextMessageUpdate) {
         const query = context.inlineQuery.query
-        const relevantXkcdIds = await this.fetchRelevantXkcds(query)
+        const relevantComics: Array<XKCD.Comic> = await XKCD.fetchAllRelevant(query)
         const offset = parseInt(context.inlineQuery.offset) || 0
-        const splicedRelevantXkcdIds = relevantXkcdIds.splice(offset)
-        const results = await Promise.all(splicedRelevantXkcdIds.map(async (id: number) => {
-            const url = `https://xkcd.com/${id}`
-            const comicInfo = await fetch(url + '/info.0.json').then(response => response.json())
+        const splicedRelevantComics = relevantComics.splice(offset)
+        const results = await Promise.all(splicedRelevantComics.map(async (comic: XKCD.Comic) => {
             return new InlineQueryResultArticle(
-                id.toString(),
-                comicInfo['title'],
+                comic.id.toString(),
+                comic.title,
                 new InputMessageContent(
-                    url,
+                    comic.xkcdURL,
                 ),
                 Markup.inlineKeyboard([
                                           [
-                                              Markup.callbackButton('Show mouse-over', id),
+                                              Markup.callbackButton('Show mouse-over', comic.id),
                                           ],
                                           [
                                               Markup.urlButton(
                                                   'Explain',
-                                                  `https://www.explainxkcd.com/wiki/index.php/${id}`,
+                                                  comic.explainURL,
                                               ),
                                           ],
                                       ],
                 ),
-                url,
-                comicInfo['transcript'],
-                comicInfo['img'],
+                comic.xkcdURL,
+                comic.transcript,
+                comic.imageURL,
             )
         }))
         context.answerInlineQuery(
@@ -89,21 +87,10 @@ When query is empty, latest xkcd is sent.`
         )
     }
 
-    private async fetchRelevantXkcds(query: string): Promise<Array<number>> {
-        const rawRows = await fetch(`https://relevantxkcd.appspot.com/process?action=xkcd&query=${query}`)
-            .then(response => response.text())
-        const relevantXkcdIds = rawRows.split(/\n/g)
-            .slice(2, -1)
-            .map((row: string) => row.split(' ')[0])
-            .map((id: string) => parseInt(id))
-        return relevantXkcdIds
-    }
-
     async mouseOver(context: ContextMessageUpdate) {
         const xkcdId = parseInt(context.callbackQuery.data)
-        const url = `https://xkcd.com/${xkcdId}`
-        const comicInfo = await fetch(url + '/info.0.json').then(response => response.json())
-        context.answerCallbackQuery(comicInfo['alt'], undefined, true)
+        const comic = await XKCD.fetchComic(xkcdId)
+        context.answerCallbackQuery(comic.altText, undefined, true)
     }
 }
 

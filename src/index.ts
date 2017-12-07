@@ -7,7 +7,7 @@ startBot(new Telegraf(token))
 
 async function startBot(bot: Telegraf) {
     bot.use(log_middleware)
-    bot.use(catch_error)
+    bot.catch(err => console.error(err))
 
     await XkcdSearchHandler.createWith(bot)
 
@@ -21,14 +21,4 @@ async function log_middleware(ctx, next) {
     console.log('- - - - - - - - - - - - - - - - - - - - - - - - - -')
     console.log('Outgoing:\n', await next())
     console.log('===================================================')
-}
-
-async function catch_error(ctx, next) {
-    let result = null
-    try {
-        result = await next()
-    } catch (e) {
-        console.error(e)
-    }
-    return result
 }

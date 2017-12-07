@@ -1,3 +1,4 @@
+import * as loadJsonFile from 'load-json-file'
 import * as XKCD from 'relevant-xkcd'
 import * as Telegraf from 'telegraf'
 import * as Extra from 'telegraf/extra'
@@ -5,8 +6,6 @@ import * as Markup from 'telegraf/markup'
 import { ContextMessageUpdate } from 'telegraf/typings'
 import { Message } from 'telegraf/typings/telegram-types'
 import { InlineQueryResultArticle, InputMessageContent } from './telegram'
-
-const npmPackage = require('../package.json')
 
 export class XkcdSearchHandler {
     private botName: string
@@ -34,6 +33,7 @@ You can also use \`/xkcd <query>\` in pm or any group I'm in.
 
 When query is empty, latest xkcd is sent.`
 
+        const npmPackage = await loadJsonFile('package.json')
         const contactUrl = process.env.CONTACT_URL || 't.me/GingerPlusPlus'
         const inlineKeyboard = Markup.inlineKeyboard(
             [

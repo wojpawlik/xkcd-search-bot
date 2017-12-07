@@ -1,6 +1,6 @@
 import * as Telegraf from 'telegraf'
 import * as util from 'util'
-import { XkcdSearchHandler } from './XkcdSearchHandler'
+import { XkcdSearchHandler } from './xkcdSearchHandler'
 
 const token = process.env.BOT_TOKEN
 startBot(new Telegraf(token))

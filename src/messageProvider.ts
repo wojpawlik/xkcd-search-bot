@@ -42,7 +42,7 @@ When query is empty, latest xkcd is sent.`,
     makeInlineQueryResultFromComic(comic: XKCD.Comic): InlineQueryResult {
         return new InlineQueryResultArticle(
             comic.id.toString(),
-            comic.title,
+            `#${comic.id}: ${comic.title}`,
             new InputMessageContent(
                 comic.xkcdURL,
             ),

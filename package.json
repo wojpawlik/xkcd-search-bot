@@ -5,7 +5,7 @@
   "dependencies": {
     "load-json-file": "^4.0.0",
     "node-fetch": "^1.7.3",
-    "relevant-xkcd": "y0hy0h/relevant-xkcd",
+    "relevant-xkcd": "y0hy0h/relevant-xkcd#latest",
     "telegraf": "telegraf/telegraf#feature/typings"
   },
   "scripts": {

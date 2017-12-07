@@ -43,9 +43,10 @@ export class XkcdSearchHandler {
             return this.messageProvider.makeInlineQueryResultFromComic(comic)
         }))
 
+        const cacheTime = process.env.ENVIRONMENT === 'DEBUG' ? 0 : 60*60*1000
         return context.answerInlineQuery(
             results as any,
-            {next_offset: offset + results.length, cache_time: 0} as any,
+            {next_offset: offset + results.length, cache_time: cacheTime} as any,
         )
     }
 
@@ -75,7 +76,8 @@ export class XkcdSearchHandler {
         const xkcdId = parseInt(context.callbackQuery.data)
         const comic = await XKCD.fetchComic(xkcdId)
         const answer = this.messageProvider.getCallbackQueryAnswerForComic(comic)
-        return answer.asAnswer(context, 0)
+        const cacheTime = process.env.ENVIRONMENT === 'DEBUG' ? 0 : 60*60*1000
+        return answer.asAnswer(context, cacheTime)
     }
 }
 

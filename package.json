@@ -10,6 +10,7 @@
   },
   "scripts": {
     "start": "ts-node ./src/index.ts",
+    "debug": "env ENVIRONMENT=DEBUG npm run start",
     "test": "standard"
   },
   "repository": {

@@ -57,10 +57,11 @@ export class XkcdSearchHandler {
             const comicId = parseInt(query)
             if (comicId) {
                 try {
+                    suitableComics.filter(comic => comic.id !== comicId)
                     suitableComics.unshift(await XKCD.fetchComic(comicId))
                 } catch (e) {
-                    // TODO: Detect if error is 404
-                    console.error(e)
+                    if (e.status && e.status === 404) console.error(e)
+                    else throw e
                 }
             }
         } else {

@@ -52,25 +52,30 @@ export class XkcdSearchHandler {
     private async getSuitableComics(query: string, offset: number): Promise<Array<XKCD.Comic>> {
         let suitableComics
         if (query) {
-            suitableComics = await XKCD.fetchAllRelevant(query)
-
-            const comicId = parseInt(query)
-            if (comicId) {
-                try {
-                    suitableComics.filter(comic => comic.id !== comicId)
-                    suitableComics.unshift(await XKCD.fetchComic(comicId))
-                } catch (e) {
-                    if (e.status && e.status === 404) console.error(e)
-                    else throw e
-                }
-            }
-
+            suitableComics = await this.getRelevantComics(query)
             suitableComics = suitableComics.splice(offset)
         } else {
             suitableComics = await XKCD.fetchNLatest(10, offset)
         }
 
         return suitableComics
+    }
+
+
+    private async getRelevantComics(query: string) {
+        const relevantComics = await XKCD.fetchAllRelevant(query)
+
+        const comicId = parseInt(query)
+        if (comicId) {
+            try {
+                relevantComics.filter(comic => comic.id !== comicId)
+                relevantComics.unshift(await XKCD.fetchComic(comicId))
+            } catch (e) {
+                if (e.status && e.status === 404) console.error(e)
+                else throw e
+            }
+        }
+        return relevantComics
     }
 
     async mouseOver(context: ContextMessageUpdate) {

@@ -5,8 +5,8 @@
   "dependencies": {
     "load-json-file": "^4.0.0",
     "node-fetch": "^1.7.3",
-    "relevant-xkcd": "y0hy0h/relevant-xkcd#latest",
-    "telegraf": "telegraf/telegraf#feature/typings"
+    "relevant-xkcd": "github:y0hy0h/relevant-xkcd#latest",
+    "telegraf": "github:telegraf/telegraf#feature/typings"
   },
   "scripts": {
     "start": "ts-node ./src/index.ts",
@@ -28,7 +28,7 @@
   },
   "homepage": "https://github.com/GingerPlusPlus/xkcd-search-bot#readme",
   "devDependencies": {
-    "@types/node": "^8.0.54",
+    "@types/node": "^8.0.57",
     "ts-node": "^3.3.0",
     "typescript": "^2.6.2"
   }

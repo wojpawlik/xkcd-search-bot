@@ -35,11 +35,10 @@ export class XkcdSearchHandler {
 
     async inlineQuery(context: ContextMessageUpdate) {
         const query = context.inlineQuery.query
-        const relevantComics = await this.getSuitableComics(query)
-
         const offset = parseInt(context.inlineQuery.offset) || 0
-        const splicedRelevantComics = relevantComics.splice(offset)
-        const results: Array<InlineQueryResult> = await Promise.all(splicedRelevantComics.map(async (comic: XKCD.Comic) => {
+        const suitableComics = await this.getSuitableComics(query, offset)
+
+        const results: Array<InlineQueryResult> = await Promise.all(suitableComics.map(async (comic: XKCD.Comic) => {
             return this.messageProvider.makeInlineQueryResultFromComic(comic)
         }))
 
@@ -50,7 +49,7 @@ export class XkcdSearchHandler {
         )
     }
 
-    private async getSuitableComics(query: string): Promise<Array<XKCD.Comic>> {
+    private async getSuitableComics(query: string, offset: number): Promise<Array<XKCD.Comic>> {
         let suitableComics
         if (query) {
             suitableComics = await XKCD.fetchAllRelevant(query)
@@ -65,8 +64,10 @@ export class XkcdSearchHandler {
                     else throw e
                 }
             }
+
+            suitableComics = suitableComics.splice(offset)
         } else {
-            suitableComics = await XKCD.fetchNLatest(10)
+            suitableComics = await XKCD.fetchNLatest(10, offset)
         }
 
         return suitableComics

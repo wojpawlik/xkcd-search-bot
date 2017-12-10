@@ -1,8 +1,11 @@
-import * as loadJsonFile from 'load-json-file'
 import * as XKCD from 'relevant-xkcd'
 import * as Markup from 'telegraf/markup'
 import {
-    CallbackQueryAnswer, InlineQueryResult, InlineQueryResultArticle, InputMessageContent, Message,
+    CallbackQueryAnswer,
+    InlineQueryResult,
+    InlineQueryResultArticle,
+    InputMessageContent,
+    Message,
     MessageText,
 } from './telegram'
 
@@ -14,26 +17,7 @@ Type \`@${botName} <query>\` in any chat to search for [relevant xkcd](https://r
 When the query is empty, the latest XKCD comics are sent.`,
             MessageText.Markdown,
         )
-
-        const contactUrl = process.env.CONTACT_URL || 't.me/GingerPlusPlus'
-        const npmPackage = loadJsonFile.sync('package.json')
-        const repositoryUrl = npmPackage.repository.url
-        const rateUrl = `https://telegram.me/storebot?start=${botName}`
-        const inlineKeyboard = Markup.inlineKeyboard(
-            [
-                [
-                    Markup.urlButton('Contact author', contactUrl),
-                ],
-                [
-                    Markup.urlButton('Repository', repositoryUrl),
-                ],
-                [
-                    Markup.urlButton('Rate', rateUrl),
-                ],
-            ],
-        )
-
-        return new Message(message_text, inlineKeyboard)
+        return new Message(message_text)
     }
 
     makeInlineQueryResultFromComic(comic: XKCD.Comic): InlineQueryResult {

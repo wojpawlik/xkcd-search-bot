@@ -10,11 +10,8 @@ export class MessageProvider {
     getHelpMessage(botName: string) {
         const message_text = new MessageText(
             `\
-Type \`@${botName} <query>\` in any chat to search for [relevant xkcd](https://relevantxkcd.appspot.com/).
-
-You can also use \`/xkcd <query>\` in pm or any group I'm in.
-
-When query is empty, latest xkcd is sent.`,
+Type \`@${botName} <query>\` in any chat to search for [relevant xkcd](https://relevantxkcd.appspot.com/) comics.
+When the query is empty, the latest XKCD comics are sent.`,
             MessageText.Markdown,
         )
 

@@ -6,7 +6,7 @@ startServer(Express())
 
 async function startServer(app: Express) {
     // Static website
-    app.use(Express.static('./public'))
+    app.use(Express.static(__dirname + '/public/'))
 
     // Bot webhooks redirect
     const {pathToFetchFrom, urlToRedirectTo} = await startBot()

@@ -1,29 +1,36 @@
 {
   "name": "xkcd-search-bot",
-  "version": "0.2.0",
-  "description": "Telegram bot for searching for revelant xkcd comics, inline.",
+  "version": "0.4.0",
+  "description": "Telegram bot for searching for revelant xkcd comics inline.",
   "dependencies": {
-    "lodash": "^4.17.4",
-    "request": "^2.81.0",
-    "request-promise-native": "^1.0.4",
-    "telebot": "^1.2.3"
+    "load-json-file": "^4.0.0",
+    "node-fetch": "^1.7.3",
+    "relevant-xkcd": "github:y0hy0h/relevant-xkcd#latest",
+    "telegraf": "github:telegraf/telegraf#feature/typings",
+    "express": "latest"
   },
   "scripts": {
-    "start": "node main",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "ts-node ./src/index.ts",
+    "debug": "env ENVIRONMENT=DEBUG npm run start",
+    "test": "standard"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/GingerPlusPlus/xkcd-search-bot.git"
   },
   "author": "GingerPlusPlus <woj.pawlik@gmail.com>",
+  "contributors": [
+    "Y0hy0h"
+  ],
   "license": "ISC",
   "private": true,
-  "engines": {
-    "node": ">=8.1.3"
-  },
   "bugs": {
     "url": "https://github.com/GingerPlusPlus/xkcd-search-bot/issues"
   },
-  "homepage": "https://github.com/GingerPlusPlus/xkcd-search-bot#readme"
+  "homepage": "https://github.com/GingerPlusPlus/xkcd-search-bot#readme",
+  "devDependencies": {
+    "@types/node": "^8.0.57",
+    "ts-node": "^3.3.0",
+    "typescript": "^2.6.2"
+  }
 }

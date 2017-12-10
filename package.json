@@ -6,7 +6,8 @@
     "load-json-file": "^4.0.0",
     "node-fetch": "^1.7.3",
     "relevant-xkcd": "github:y0hy0h/relevant-xkcd#latest",
-    "telegraf": "github:telegraf/telegraf#feature/typings"
+    "telegraf": "github:telegraf/telegraf#feature/typings",
+    "express": "latest"
   },
   "scripts": {
     "start": "ts-node ./src/index.ts",

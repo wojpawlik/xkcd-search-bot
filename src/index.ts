@@ -1,24 +1,20 @@
-import * as Telegraf from 'telegraf'
-import * as util from 'util'
-import { XkcdSearchHandler } from './xkcdSearchHandler'
+import { Express } from 'express'
+import { startBot } from './startBot'
 
-const token = process.env.BOT_TOKEN
-startBot(new Telegraf(token))
+const express = require('express')
+const proxy = require('express-http-proxy')
 
-async function startBot(bot: Telegraf) {
-    bot.use(log_middleware)
-    bot.catch(err => console.error(err))
+startServer(express())
 
-    await XkcdSearchHandler.createWith(bot)
+async function startServer(app: Express) {
+    // Static website
+    app.use(express.static('./public'))
 
-    bot.startPolling();
-    console.log('Your bot is polling.')
-}
+    // Bot webhooks redirect
+    const {pathToFetchFrom, urlToRedirectTo} = await startBot()
+    app.use(pathToFetchFrom, proxy(urlToRedirectTo))
 
-async function log_middleware(ctx, next) {
-    console.log('===================================================')
-    console.log('Incoming:\n', util.inspect(ctx.update, {depth: 5}))
-    console.log('- - - - - - - - - - - - - - - - - - - - - - - - - -')
-    console.log('Outgoing:\n', await next())
-    console.log('===================================================')
+    const listener = app.listen(process.env.PORT, function () {
+        console.log('Your app is listening on port ' + listener.address().port)
+    })
 }

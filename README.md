@@ -1,22 +1,14 @@
+# XKCD For That Bot [![Telegram @xkcdForThatBot](https://img.shields.io/badge/Telegram-%40xkcdForThatBot-blue.svg)](https://t.me/xkcdForThatBot)
+
 [![JavaScript Style Guide](https://cdn.rawgit.com/standard/standard/master/badge.svg)](https://github.com/standard/standard)
 
-Telegram [bot] for searching for [revelant xkcd] comics, inline.
+Now there's an XKCD-For-That-Bot! It helps you find [relevant xkcd] comics in Telegram.
 
-```bash
-git clone https://github.com/GingerPlusPlus/xkcd-search-bot.git
-cd xkcd-search-bot
-# set some env variables, see below
-npm install
-npm start
-```
+The bot is available as [`@xkcdForThatBot`](https://t.me/xkcdForThatBot).
 
-Configuration is done via environmental variables:
+## Original Bot
+The [original bot](https://t.me/xkcdsearch_bot) by
+[GingerPlusPlus](https://github.com/GingerPlusPlus) is the base for this bot.
+The code is available on [GitHub](https://github.com/GingerPlusPlus/xkcd-search-bot).
 
-- `BOT_TOKEN` (required) &ndash; token, obtain it from [@BotFather].
-- `CONTACT_URL` (optional) &ndash; url to which the "Contact author" button points to.
-
-Webhook is not supported yet. Feel free to open a pull request, or just tell me anyhow if you really need it.
-
-[bot]: https://t.me/xkcdsearch_bot
-[@BotFather]: https://t.me/BotFather
-[revelant xkcd]: https://relevantxkcd.appspot.com/
+[relevant xkcd]: https://relevantxkcd.appspot.com/

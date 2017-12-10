@@ -1,4 +1,4 @@
-import Telegraf from 'telegraf'
+import * as Telegraf from 'telegraf'
 import * as util from 'util'
 import { XkcdSearchHandler } from './bot/xkcdSearchHandler'
 

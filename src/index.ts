@@ -1,18 +1,16 @@
-import { Express } from 'express'
+import * as Express from 'express'
+import * as Proxy from 'express-http-proxy'
 import { startBot } from './startBot'
 
-const express = require('express')
-const proxy = require('express-http-proxy')
-
-startServer(express())
+startServer(Express())
 
 async function startServer(app: Express) {
     // Static website
-    app.use(express.static('./public'))
+    app.use(Express.static('./public'))
 
     // Bot webhooks redirect
     const {pathToFetchFrom, urlToRedirectTo} = await startBot()
-    app.use(pathToFetchFrom, proxy(urlToRedirectTo))
+    app.use(pathToFetchFrom, Proxy(urlToRedirectTo))
 
     const listener = app.listen(process.env.PORT, function () {
         console.log('Your app is listening on port ' + listener.address().port)

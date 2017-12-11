@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 15.0.2, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Ebene_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="300px" height="300px" viewBox="0 0 300 300" enable-background="new 0 0 300 300" xml:space="preserve">
+<circle fill="#FFFFFF" stroke="#000000" stroke-miterlimit="10" cx="150" cy="150" r="150"/>
+<text transform="matrix(1 0 0 1 14.7754 190.96)" font-family="'MyriadPro-Regular'" font-size="139.5524">xkcd</text>
+<g display="none">
+	
+		<image display="inline" overflow="visible" opacity="0.57" width="341" height="341" xlink:href="2581C702.png"  transform="matrix(1 0 0 1 19 11)">
+	</image>
+	<g display="inline">
+		<path d="M248.838,214.497h-13.971l-4.957-4.767c17.341-20.172,27.771-46.354,27.771-74.818
+			c0-63.487-51.467-114.954-114.955-114.954c-63.488,0-114.955,51.467-114.955,114.954c0,63.489,51.467,114.955,114.955,114.955
+			c28.464,0,54.646-10.431,74.816-27.771l4.768,4.956v13.972l88.428,88.255l26.355-26.355L248.838,214.497z M142.727,214.497
+			c-44.041,0-79.584-35.543-79.584-79.585c0-44.04,35.543-79.583,79.584-79.583c44.041,0,79.584,35.543,79.584,79.583
+			C222.311,178.954,186.768,214.497,142.727,214.497z"/>
+	</g>
+</g>
+<circle opacity="0.46" fill="#FFFFFF" cx="135.332" cy="141.668" r="95.333"/>
+<g>
+	<image overflow="visible" opacity="0.57" width="302" height="302" xlink:href="2581C706.png"  transform="matrix(1 0 0 1 22 28)">
+	</image>
+	<g>
+		<path d="M210.52,229.086v-12.38h12.38l78.268,78.42l-12.227,12.228L210.52,229.086z M135.727,246.867
+			c-57.873,0-104.955-47.083-104.955-104.955S77.854,36.958,135.727,36.958c57.872,0,104.955,47.082,104.955,104.954
+			c0,25.024-9.005,49.28-25.354,68.3l-5.221,6.073l-6.083,5.229C185.006,237.863,160.751,246.867,135.727,246.867z M135.727,52.329
+			c-49.397,0-89.584,40.187-89.584,89.583c0,49.397,40.187,89.585,89.584,89.585c49.396,0,89.584-40.188,89.584-89.585
+			C225.311,92.516,185.123,52.329,135.727,52.329z"/>
+	</g>
+</g>
+</svg>

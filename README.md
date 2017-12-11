@@ -1,6 +1,7 @@
-# XKCD For That Bot [![Telegram @xkcdForThatBot](https://img.shields.io/badge/Telegram-%40xkcdForThatBot-blue.svg)](https://t.me/xkcdForThatBot)
+# XKCD For That Bot
 
-[![JavaScript Style Guide](https://cdn.rawgit.com/standard/standard/master/badge.svg)](https://github.com/standard/standard)
+[![Telegram @xkcdForThatBot](https://img.shields.io/badge/Telegram-%40xkcdForThatBot-blue.svg)](https://t.me/xkcdForThatBot)
+[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://github.com/standard/standard)
 
 Now there's an XKCD-For-That-Bot! It helps you find [relevant xkcd] comics in Telegram.
 

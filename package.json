@@ -1,48 +1,30 @@
 {
   "name": "xkcd-search-bot",
-  "version": "0.4.0",
+  "version": "1.0.0",
   "description": "Telegram bot for searching for revelant xkcd comics inline.",
   "dependencies": {
-    "load-json-file": "^4.0.0",
-    "node-fetch": "^1.7.3",
-    "relevant-xkcd": "github:y0hy0h/relevant-xkcd#latest",
-    "telegraf": "github:telegraf/telegraf#feature/typings",
-    "express": "latest",
-    "express-http-proxy": "latest"
+    "elmegram.js": "Elmegram/elmegram.js#e376f7ab6cc9b5ccbb40c32b38141776b4d0cae7",
+    "express": "^4.16.4"
   },
   "scripts": {
+    "build": "yarn build:dev --optimize",
+    "build:dev": "elm make ./src/bot/Main.elm --output ./src/bot.js",
     "start": "ts-node ./src/index.ts",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start:dev": "yarn build:dev && yarn start",
+    "start:prod": "yarn build && yarn start"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/GingerPlusPlus/xkcd-search-bot.git"
+    "url": "https://github.com/Y0hy0h/xkcd-for-that-bot"
   },
-  "author": "GingerPlusPlus <woj.pawlik@gmail.com>",
-  "contributors": [
-    "Y0hy0h"
-  ],
-  "license": "ISC",
-  "private": true,
+  "author": "author",
+  "license": "BSD-3-Clause",
   "bugs": {
-    "url": "https://github.com/GingerPlusPlus/xkcd-search-bot/issues"
+    "url": "https://github.com/Y0hy0h/xkcd-for-that-bot/issues"
   },
-  "homepage": "https://github.com/GingerPlusPlus/xkcd-search-bot#readme",
   "devDependencies": {
-    "@types/node": "^8.0.57",
-    "eslint-plugin-typescript": "^0.8.1",
-    "standard": "^10.0.3",
-    "ts-node": "^3.3.0",
-    "typescript": "^2.6.2",
-    "typescript-eslint-parser": "^9.0.1"
-  },
-  "engines": {
-    "node": "8.9.1"
-  },
-  "standard": {
-    "parser": "typescript-eslint-parser",
-    "plugins": [
-      "typescript"
-    ]
+    "@types/node": "^10.12.10",
+    "ts-node": "^7.0.1",
+    "typescript": "^3.1.6"
   }
 }

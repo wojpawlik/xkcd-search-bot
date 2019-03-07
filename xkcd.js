@@ -29,6 +29,17 @@ const latestXkcd = throttle({ leading: true, trailing: false }, LATEST_XKCD_CACH
 });
 
 
+const getXkcd = _.memoize(num =>
+    request({
+        url: `https://xkcd.com/${num}/info.0.json`,
+        json: true,
+    }).catch(err => {
+        getXkcd.cache.delete(num);
+        throw err;
+    })
+);
+
+
 function results() {
     return JSON.stringify(this.list);
 }
@@ -37,6 +48,9 @@ function results() {
 function replyMarkupForXkcd(num) {
     return bot.inlineKeyboard([[
         {
+            text: 'Hover text',
+            callback_data: `alt ${num}`
+        }, {
             text: 'Explanation...',
             url: `https://www.explainxkcd.com/wiki/index.php/${num}`,
         }
@@ -97,4 +111,12 @@ exports.inlineHandler = async (inlineQuery) => {
             }))
         : [inlineImage(await latestXkcd())]
     return bot.answerInlineQuery({ id, list, cacheTime, results });
+}
+
+exports.callbackHandler = async ({ data, id }) => {
+    let [ , num ] = /^alt (\d+)$/.exec(data) || [];
+    if (num) {
+        const { alt } = await getXkcd(num);
+        return bot.answerCallbackQuery(id, { text: alt, showAlert: true, cacheTime: 604800 });
+    }
 }

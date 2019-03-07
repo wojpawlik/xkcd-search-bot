@@ -9,6 +9,7 @@ const xkcd = require('./xkcd');
 bot.on('/xkcd', xkcd.handler);
 bot.on('/random', xkcd.randomHandler);
 bot.on('inlineQuery', xkcd.inlineHandler);
+bot.on('callbackQuery', xkcd.callbackHandler);
 bot.on(['/start', '/help'], help.handler);
 
 bot.start();

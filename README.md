@@ -1,7 +1,7 @@
 Telegram [bot] for searching for [revelant xkcd] comics, inline.
 
 ```bash
-git clone https://github.com/GingerPlusPlus/xkcd-search-bot.git
+git clone https://github.com/wojpawlik/xkcd-search-bot.git
 cd xkcd-search-bot
 # set some env variables, see below
 npm install

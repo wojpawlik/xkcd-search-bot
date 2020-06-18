@@ -13,7 +13,7 @@ npm start
 ## Setup with Docker
 
 ```bash
-docker build -t xkcd-search-bot https://github.com/wojpawlik/xkcd-search-bot
+docker build -t xkcd-search-bot https://github.com/wojpawlik/xkcd-search-bot.git
 docker run -itd --env TELEGRAM_BOT_TOKEN xkcd-search-bot
 ```
 

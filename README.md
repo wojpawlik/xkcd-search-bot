@@ -1,11 +1,20 @@
 Telegram [bot] for searching for [revelant xkcd] comics, inline.
 
+## Setup
+
 ```bash
 git clone https://github.com/wojpawlik/xkcd-search-bot.git
 cd xkcd-search-bot
 # set some env variables, see below
 npm install
 npm start
+```
+
+## Setup with Docker
+
+```bash
+docker build -t xkcd-search-bot https://github.com/wojpawlik/xkcd-search-bot
+docker run -itd --env TELEGRAM_BOT_TOKEN xkcd-search-bot
 ```
 
 Configuration is done via environmental variables:

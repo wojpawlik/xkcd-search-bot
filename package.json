@@ -6,7 +6,7 @@
     "lodash": "^4.17.15",
     "request": "^2.88.2",
     "request-promise-native": "^1.0.8",
-    "telebot": "^1.4.0"
+    "telebot": "^1.4.1"
   },
   "scripts": {
     "start": "node main",

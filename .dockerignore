@@ -1,3 +1,7 @@
+**
+!*.js
+!package*.json
+
 **/.classpath
 **/.dockerignore
 **/.env

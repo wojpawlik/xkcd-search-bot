@@ -1,4 +1,4 @@
-Telegram [bot] for searching for [revelant xkcd] comics, inline.
+Telegram [bot] for searching for [relevant xkcd] comics, inline.
 
 ## Setup
 
@@ -14,7 +14,11 @@ npm start
 
 ```bash
 docker build -t xkcd-search-bot https://github.com/wojpawlik/xkcd-search-bot.git
-docker run -itd --env TELEGRAM_BOT_TOKEN xkcd-search-bot
+# set TELEGRAM_BOT_TOKEN env variable
+# run interactively...
+docker run -it --env TELEGRAM_BOT_TOKEN xkcd-search-bot
+# ...or daemonize for production
+docker run --detach --restart=always --memory="64M" --memory-swap="64M" --env TELEGRAM_BOT_TOKEN xkcd-search-bot
 ```
 
 Configuration is done via environmental variables:
@@ -26,4 +30,4 @@ Configuration is done via environmental variables:
 
 [bot]: https://t.me/xkcdsearch_bot
 [@BotFather]: https://t.me/BotFather
-[revelant xkcd]: https://relevantxkcd.appspot.com/
+[relevant xkcd]: https://relevantxkcd.appspot.com/
